@@ -1,0 +1,26 @@
+<div class="cart-container">
+  <div class="row">
+    <div *ngIf="cartService.getUserCart()">
+      <h3>{{ cartService.getSelectedUser()?.fullName }}'s Cart</h3>
+      <div class="cart-item" *ngFor="let cartItem of cartService.getUserCart()?.items">
+        <div class="cart-item-content">
+          <div class="cart-item-info">
+            <img [src]="cartItem.image.small" alt="{{ cartItem.productName }}" class="cart-item-image">
+            <div class="cart-item-details">
+              <p class="product-name">{{ cartItem.productName }}</p>
+              <p class="product-price">Price: {{ cartItem.productPrice | currency }}</p>
+              <p class="product-count">Count: {{ cartItem.count }}</p>
+              <p class="product-total">Total: {{ cartItem.productPrice * cartItem.count | currency }}</p>
+            </div>
+          </div>
+          <div class="cart-item-buttons">
+            <button class="btn btn-increment" (click)="cartService.increment(cartItem.productId)">
+              + </button>
+            <button class="btn btn-decrement" (click)="cartService.decrement(cartItem.productId)">
+              - </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

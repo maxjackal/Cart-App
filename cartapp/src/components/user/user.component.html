@@ -1,0 +1,42 @@
+
+<div class="alert alert-success"
+*ngIf="getSelectedUser()!=undefined">
+{{getSelectedUser()?.fullName??''}}'s selected.</div>
+<div class="alert alert-danger"
+ *ngIf="getSelectedUser()==undefined">
+ Please select user.</div>
+
+<div class="userListContainer">
+
+  <div *ngFor="let user of users" class="user-card">
+    <div class="user-info">
+      <h5 class="user-name">{{ user.fullName }}</h5>
+      <button *ngIf="getSelectedUser()?.id != user.id"
+              class="btn btn-success"
+              (click)="selectUser(user)">Select</button>
+    </div>
+  </div>
+
+</div>
+
+  <!-- <div class="table-responsive border mt-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Full Name</th>
+          <th>Select</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td scope="row">{{user.id}}</td>
+          <td>{{user.fullName}}</td>
+          <td><button *ngIf="getSelectedUser()?.id!=user.id" class="btn " style="background-color: black; color: white;"
+              (click)="selectUser(user)">Select</button></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div> -->
+
